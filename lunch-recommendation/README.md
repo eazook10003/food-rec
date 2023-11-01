@@ -1,8 +1,29 @@
-# React + Vite
+REACT 실행하기
+1. npm install (node module 설치)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. npm 설치 후 package.json에 가서 dependencies에 없는 모듈들 설치할 것
 
-Currently, two official plugins are available:
+"dependencies": {
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "nodemon": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^3.5.0"
+  }
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+(인터넷에 npm axios install 치면 설치 코멘드 나옴)
+
+3. lunch-recommendation 폴더 내에서 "npm run dev" 실행하기
+
+   
+
+flask 실행하기
+
+1. pip install flask flask-cors pymongo
+
+2. MongoDB Compass앱 database 연결하기
+
+3. python3 app.py
