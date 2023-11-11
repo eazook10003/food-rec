@@ -16,6 +16,6 @@ flask 실행하기
 
 
 원하는 branch에서 작업하고 push하기
-1. "git pull origin <branch name>"을 통해 해당 브랜치의 코드를 자신의 컴퓨터로 불러온다
+1. "git pull origin 브랜치-이름"을 통해 해당 브랜치의 코드를 자신의 컴퓨터로 불러온다
 2. 코드 변경 후 "git add", "git commit"을 한다
-3. "git push origin <branch name>" 을 통해 변경한 코드를 해당 브랜치로 push
+3. "git push origin 브랜치-이름" 을 통해 변경한 코드를 해당 브랜치로 push
