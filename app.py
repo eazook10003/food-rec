@@ -3,7 +3,7 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from bson.json_util import dumps
 
-# Configuration
+# test1
 MONGO_URI = "mongodb://localhost:27017"
 
 app = Flask(__name__)
