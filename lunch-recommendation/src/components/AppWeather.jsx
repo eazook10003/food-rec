@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from "react-router-dom"
 const AppWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -33,12 +33,16 @@ const AppWeather = () => {
   if (!weatherData) return <div>Loading...</div>;
 
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <h1>Weather in {city}</h1>
-      <p>Temperature: {weatherData.main.temp} °C</p>
-      <p>Weather: {weatherData.weather[0].description}</p>
-      {/* 여기에 추가적인 날씨 정보를 표시할 수 있습니다 */}
+    <div>
+      <div style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <h1>Weather in {city}</h1>
+        <p>Temperature: {weatherData.main.temp} °C</p>
+        <p>Weather: {weatherData.weather[0].description}</p>
+        {/* 여기에 추가적인 날씨 정보를 표시할 수 있습니다 */}
+      </div>
+      <Link to="/login">Login</Link>
     </div>
+    
   );
 }
 
