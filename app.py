@@ -24,14 +24,16 @@ def login():
     password = request.json.get('password')
 
     try:
-        check_email = collection.find_one({"email": email})
-        check_pw = collection.find_one({"password": password})
-        if check_email and check_pw:
+        user = collection.find_one({"email": email, "password": password})
+        if user:
             return jsonify("exist")
-        elif check_email and not check_pw:
-            return jsonify("wrong-pw")
         else:
-            return jsonify("notexist")
+            # This means either the email doesn't exist or the password is wrong
+            check_email = collection.find_one({"email": email})
+            if check_email:
+                return jsonify("wrong-pw")
+            else:
+                return jsonify("notexist")
     except Exception as e:
         return jsonify("fail")
 
@@ -39,16 +41,42 @@ def login():
 def signup():
     email = request.json.get('email')
     password = request.json.get('password')
+    age = request.json.get('age')
+    sex = request.json.get('sex')
+    securityQuestion = request.json.get('securityQuestion')
+    securityAnswer = request.json.get('securityAnswer')
 
     try:
         check = collection.find_one({"email": email})
         if check:
             return jsonify("exist")
         else:
-            collection.insert_one({"email": email, "password": password})
+            collection.insert_one({"email": email, "password": password, "age": age, "sex": sex, "securityQuestion": securityQuestion, "securityAnswer": securityAnswer})
             return jsonify("notexist")
     except Exception as e:
         return jsonify("fail")
+
+@app.route("/findpw", methods=['POST'])
+def findpw():
+    email = request.json.get('email')
+    securityQuestion = request.json.get('securityQuestion')
+    securityAnswer = request.json.get('securityAnswer')
+
+    try:
+        user = collection.find_one({"email": email, "securityQuestion": securityQuestion, "securityAnswer": securityAnswer})
+        if user:
+            collection.update_one({"email": email}, {"$set": {"password": "0000"}})
+            return jsonify("confirmed")
+        else:
+            # This means either the email doesn't exist or the password is wrong
+            check_email = collection.find_one({"email": email})
+            if check_email:
+                return jsonify("wrong")
+            else:
+                return jsonify("notexist")
+    except Exception as e:
+        return jsonify("fail")
+
 
 if __name__ == "__main__":
     app.run(port=8000)
