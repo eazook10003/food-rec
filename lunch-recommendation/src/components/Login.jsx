@@ -60,6 +60,7 @@ function Login() {
 
 
             <Link to="/signup">Signup Page</Link>
+            <p>/</p>
             <Link to="/findpw">Forgot Password?</Link>
 
         </div>
