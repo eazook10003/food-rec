@@ -4,8 +4,8 @@ import Login from "./components/Login"
 import Signup from "./components/Signup"
 import Findpw from "./components/Findpw"
 import AppWeather from "./components/AppWeather"
-import Cook from "./components/Cook"
-import Delivery from "./components/Delivery"
+import Cook from "./components/cook"
+import Delivery from "./components/delivery"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 
