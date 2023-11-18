@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import './Signup.css'
 
 
 function Login() {
@@ -8,7 +9,7 @@ function Login() {
 
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-    const [age, setAge] = useState('')
+const [age, setAge] = useState('')
     const [sex, setSex] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('');
     const [securityQuestion, setSecurityQuestion] = useState('');
@@ -52,37 +53,33 @@ function Login() {
 
 
     return (
-        <div className="login">
+        <div className="Signup">
 
-            <h1>Signup</h1>
+            <h1>뭐 먹지</h1>
 
-            <form action="POST">
+            <form class="Signup-form" action="POST">
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
                 <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
                 <input type="password" onChange={(e) => { setConfirmPassword(e.target.value) }} placeholder="Confirm Password" />
                 <input type="age" onChange={(e) => { setAge(e.target.value) }} placeholder="Age" />
-                <select onChange={(e) => { setSex(e.target.value) }} defaultValue="">
+                <select class="custom-select" onChange={(e) => { setSex(e.target.value) }} defaultValue="">
                     <option value="" disabled>Select Sex</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
-                <select onChange={(e) => setSecurityQuestion(e.target.value)} defaultValue="">
+                <select class="custom-select" onChange={(e) => setSecurityQuestion(e.target.value)} defaultValue="">
                     <option value="" disabled>Select a Security Question</option>
                     <option value="highSchoolName">What is your high school name?</option>
                     <option value="firstPetName">What is your first pet's name?</option>
                     <option value="birthCity">In what city were you born?</option>
                 </select>
                 <input type="text" onChange={(e) => setSecurityAnswer(e.target.value)} placeholder="Your Answer" />
-                <input type="submit" onClick={submit} />
+                <input class="Signup-submit-button" type="submit" onClick={submit} />
             </form>
 
-
             <br />
-            <p>OR</p>
+            <p>Already have an acoount?   <Link to="/login">Login Page</Link></p> 
             <br />
-
-            <Link to="/">Login Page</Link>
-
         </div>
     )
 }
