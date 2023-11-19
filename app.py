@@ -83,8 +83,7 @@ def findpw():
 @app.route("/Cook", methods=['POST'])
 def food_info():
     name = request.get_json('dishName')
-    dishname = name['name']
-    print("@@#@#: ", dishname)
+    dish_name = name['name']
     #request_data = request.json.get('dishName')
     #print("@@@@@@@@@@", request_data)
     #name = request_data['name']
@@ -100,7 +99,7 @@ def food_info():
             - res['recipe'](list[str]): contain recipe in order
     '''
     
-    url = f"https://www.10000recipe.com/recipe/list.html?q={dishname}"
+    url = f"https://www.10000recipe.com/recipe/list.html?q={dish_name}"
     
     
     print("URL:@@@@@@@@: ", url)
@@ -135,7 +134,7 @@ def food_info():
         'ingredients': ingredient,
         'recipe': recipe
     }
-    print(res)
+    #print(res)
     return res
     
 

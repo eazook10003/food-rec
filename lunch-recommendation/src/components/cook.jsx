@@ -41,7 +41,8 @@ function Cook (){
 
             {foodInfo && (
                 <div>
-                 <p>Ingredients: {foodInfo.ingredients}</p>
+                    {/* <h2>{foodInfo.name}</h2> */}
+                    <p>Ingredients: {foodInfo.ingredients}</p>
                     <ol>
                         {foodInfo.recipe.map((step, index) => (
                             <li key={index}>{step}</li>
