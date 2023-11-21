@@ -1,0 +1,58 @@
+
+
+h1{
+    background-color: white;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+}
+
+div{
+    background-color: rgb(240, 189, 153);
+    align-items: center;
+    margin: auto;
+    width: 280px;
+    height: 300px;
+}
+form{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 230px;
+    height: 40px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.submit-button{
+    align-items: center;
+    margin: auto;
+    width: 230px;
+    height: 40px;
+    background-color: red;
+    position: relative;
+    bottom: 50px;
+}
+p{
+    text-align: center;
+    align-items: center;
+    margin:auto;
+}
+.Forgotpassword{
+    position: relative;
+    left: 50px;
+    bottom: 30px;
+    margin: auto;
+    size: 50px;
+}
+.noaccount{
+    position: relative;
+    bottom: 55px;
+}

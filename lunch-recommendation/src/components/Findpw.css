@@ -1,0 +1,8 @@
+.findpw{
+    position: relative;
+    bottom: 100px;
+    height: 400px;
+}
+.findpw-submit-button{
+    background-color: red;
+}
