@@ -1,14 +1,13 @@
-import React from "react"
-import {useLocation, useNavigate} from 'react-router-dom';
+import React from 'react';
+import NeighborhoodMap from './nearby_map';
 
-function Delivery (){
-    const location=useLocation()
-
-    return (
-        <div className="delivery">
-            <h1>Delivery</h1>
-        </div>
-    )
+function Delivery() {
+  return (
+    <div className="delivery">
+      <h1>Delivery</h1>
+      <NeighborhoodMap />
+    </div>
+  );
 }
 
-export default Delivery
+export default Delivery;
