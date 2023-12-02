@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import './AppWeather.css'
 
 
@@ -15,7 +15,9 @@ const CustomButton = ({ path, buttonText }) => {
     </div>
   );
 };
+
 const AppWeather = () => {
+  const history = useNavigate();
   const [weatherData, setWeatherData] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState('');
   const city = "Corvallis";
@@ -28,6 +30,7 @@ const AppWeather = () => {
       .then(response => response.json())
       .then(data => {
         setWeatherData(data);
+        localStorage.setItem('weatherData', JSON.stringify(data.main.temp)); // 날씨데이터를 cook.jsx에서 쓸 예정
         setBackgroundImage(determineBackground(data.weather[0].main));
       })
       .catch(error => console.error("Error fetching data: ", error));
