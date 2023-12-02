@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import './Findpw.css'
 
 function Findpw(){
 
@@ -42,11 +43,11 @@ function Findpw(){
 
 
     return (
-        <div className="find">
+        <div class="findpw">
 
-            <h1>Find password</h1>
+            <h1 class = "findpw-logo">Find password</h1>
 
-            <form action="POST">
+            <form class="findpw-form" action="POST">
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email"  />
                 <select onChange={(e) => setSecurityQuestion(e.target.value)} defaultValue="">
                     <option value="" disabled>Select a Security Question</option>
@@ -55,16 +56,13 @@ function Findpw(){
                     <option value="birthCity">In what city were you born?</option>
                 </select>
                 <input type="text" onChange={(e) => setSecurityAnswer(e.target.value)} placeholder="Your Answer" />
-                <input type="submit" onClick={submit} />
+                <input class="findpw-submit-button" type="submit" onClick={submit} />
             </form>
 
             <br />
-            <p>OR</p>
+            <p><Link to="/signup">Signup Page</Link></p>   <p><Link to="/login">Login Page</Link></p>
+
             <br />
-
-
-            <Link to="/signup">Signup Page</Link>
-            <Link to="/findpw">Forgot Password?</Link>
 
         </div>
     )

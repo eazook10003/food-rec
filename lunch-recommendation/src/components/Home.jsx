@@ -6,15 +6,15 @@ function Home (){
 
     return (
         <div className="homepage">
-
-            {/* <h1>Hello {location.state.id} and welcome to the home</h1> */}
-            <Link to="/cook">요리</Link>
-            <p>/</p>
-            <Link to="/delivery">외식 및 배달</Link>
-            
-
+          <Link to="/cook" className="button">
+            요리
+          </Link>
+          <p>/</p>
+          <Link to="/delivery" className="button">
+            외식 및 배달
+          </Link>
         </div>
-    )
+      );
 }
 
-export default Home
+export default Home;
