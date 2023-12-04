@@ -10,6 +10,9 @@ import pandas as pd
 import numpy as np 
 from sklearn.model_selection import train_test_split
 from flask import session
+from sklearn.preprocessing import OneHotEncoder
+from scipy.spatial.distance import hamming
+from collections import Counter
 
 MONGO_URI = "mongodb://localhost:27017"
 
@@ -21,6 +24,25 @@ client = MongoClient(MONGO_URI)
 db = client['react-login-tut']
 collection = db['collection']
 preferences_collection = db['preferences']
+
+def one_hot_encode(df):
+    encoder = OneHotEncoder(sparse=False)
+    encoded_df = encoder.fit_transform(df[['temp', 'time']])
+    return encoded_df, encoder
+
+def hamming_distance(instance1, instance2):
+    return hamming(instance1, instance2)
+
+def knn_predict(df, query, k=4):
+    encoded_df, encoder = one_hot_encode(df)
+    query_df = pd.DataFrame([query], columns=['temp', 'time'])
+    query_encoded = encoder.transform(query_df).tolist()[0]
+    distances = [hamming_distance(row, query_encoded) for row in encoded_df]
+    k_indices = np.argsort(distances)[:k]
+    k_labels = [df.iloc[i]['dishName'] for i in k_indices]
+    num_labels = 4 
+    most_common = Counter(k_labels).most_common(num_labels)
+    return [label[0] for label in most_common]
 
 def calculate_prior(df, Y):
     classes = sorted(list(df[Y].unique()))
@@ -36,37 +58,28 @@ def calculate_likelihood_categorical(df, feat_name, feat_val, Y, label):
     return p_x_given_y
 
 def naive_bayes_categorical(df, X, Y):
-    # get feature names
     features = list(df.columns)[:-1]
-
-    # calculate prior
     prior = calculate_prior(df, Y)
 
     Y_pred = []
-    # loop over every data sample
     for x in X:
-        # calculate likelihood
         labels = sorted(list(df[Y].unique()))
         likelihood = [1]*len(labels)
         for j in range(len(labels)):
             for i in range(len(features)):
                 likelihood[j] *= calculate_likelihood_categorical(df, features[i], x[i], Y, labels[j])
 
-        # calculate posterior probability (numerator only)
         post_prob = [1]*len(labels)
         for j in range(len(labels)):
             post_prob[j] = likelihood[j] * prior[j]
 
-        top3_indices = np.argsort(post_prob)[-4:]  # This gives indices of top 3 values
+        top3_indices = np.argsort(post_prob)[-4:]
 
-        # Reverse the indices (so they are in the order of highest probability first)
         top3_indices = top3_indices[::-1]
 
-        # Get corresponding labels for these indices
         labels = sorted(list(df[Y].unique()))
         top3_labels = [labels[i] for i in top3_indices]
 
-        # Append these labels to Y_pred
         Y_pred.append(top3_labels)
 
     return np.array(Y_pred)
@@ -116,8 +129,23 @@ def export_predict(user_email, a, b):
         [a, b],  # The input features for prediction
     ]
 
-    Y_pred = naive_bayes_categorical(df, X=X_test, Y="dishName")
-    return Y_pred.tolist()
+    X_test_K = [a, b]
+
+    predicted_dish_knn = knn_predict(df, X_test_K, k=4)
+    predicted_dish_naive_bayes = naive_bayes_categorical(df, X=X_test, Y="dishName")
+    print("naive: ", predicted_dish_naive_bayes)
+    print("KNN: ", predicted_dish_knn)
+    # Flatten the Naive Bayes predictions
+    predicted_dish_naive_bayes = [item for sublist in predicted_dish_naive_bayes for item in sublist]
+
+    # Find common dishes and their counts
+    common_dishes = set(predicted_dish_knn) & set(predicted_dish_naive_bayes)
+    dish_counts = {dish: min(predicted_dish_knn.count(dish), predicted_dish_naive_bayes.count(dish)) for dish in common_dishes}
+    print("dish_count: ", dish_counts)
+    # Sort dishes by their counts
+    ranked_dishes = sorted(dish_counts, key=dish_counts.get, reverse=True)
+    print("ranked dish: ",ranked_dishes)
+    return ranked_dishes
 
 
 
@@ -221,7 +249,6 @@ def food_info():
         'ingredients': ingredient,
         'recipe': recipe
     }
-    #print(res)
     return res
 
 @app.route("/submitDetails", methods=['POST'])
@@ -271,14 +298,75 @@ def predict():
     time = get_part_of_day(int(current_time))
     warmth = get_temp_of_day(temp)
     prediction = export_predict(email, warmth, time)
-    print("prediction: ", prediction)
     if isinstance(prediction, tuple):  # Checking if it's an error message
         return jsonify({"error": prediction[0]}), 404
 
     return jsonify({"prediction": prediction}), 200
 
 
+@app.route("/collectPreferences", methods=['POST'])
+def collect_preferences():
+    responses = request.json.get('responses')  # Changed 'answers' to 'responses'
+    email = request.json.get('userId')
+    user = collection.find_one({"email": email})
+    if not user:
+        return jsonify({"error": "User not found123"}), 404
 
+    user_id = user['_id']
+
+    for response in responses:
+        dish_name = response['dishName']
+        warmth = response['temp']
+        time = response['time']
+        update_result = preferences_collection.update_one(
+        {"userId": user_id},
+        {
+            "$push": {
+                "preferences": {
+                    "temp": warmth,
+                    "time": time,
+                    "dishName": dish_name
+                }
+            }
+        },
+        upsert=True
+    )
+
+    if update_result.modified_count or update_result.upserted_id:
+        return jsonify({"message": "Details updated successfully"}), 200
+    else:
+        return jsonify({"error": "Update failed"}), 500
+
+    # data = request.json
+    # email = data.get('userId')
+    # preferences = data.get('preferences')
+
+    # try:
+    #     # Find the user by email
+    #     user = collection.find_one({"email": email})
+    #     if not user:
+    #         return jsonify({"error": "User not found"}), 404
+
+    #     user_id = user['_id']
+
+    #     # Update or insert the preferences into the preferences collection
+    #     update_result = preferences_collection.update_one(
+    #         {"userId": user_id},
+    #         {
+    #             "$set": {
+    #                 "preferences": preferences
+    #             }
+    #         },
+    #         upsert=True
+    #     )
+
+    #     if update_result.modified_count or update_result.upserted_id:
+    #         return jsonify({"message": "Preferences collected successfully"}), 200
+    #     else:
+    #         return jsonify({"error": "Preferences collection failed"}), 500
+
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(port=8000)

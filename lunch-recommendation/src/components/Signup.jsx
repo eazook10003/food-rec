@@ -9,13 +9,11 @@ function Login() {
 
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-const [age, setAge] = useState('')
+    const [age, setAge] = useState('')
     const [sex, setSex] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('');
     const [securityQuestion, setSecurityQuestion] = useState('');
     const [securityAnswer, setSecurityAnswer] = useState('');
-
-    
 
     async function submit(e){
         e.preventDefault();
@@ -35,7 +33,9 @@ const [age, setAge] = useState('')
                     alert("User already exists")
                 }
                 else if(res.data=="notexist"){
-                    history("/home",{state:{id:email}})
+                    localStorage.setItem('email', JSON.stringify(email));
+                    history("/survey")
+                    //history("/home",{state:{id:email}})
                 }
             })
             .catch(e=>{

@@ -6,8 +6,8 @@ import Findpw from "./components/Findpw"
 import AppWeather from "./components/AppWeather"
 import Cook from "./components/cook"
 import Delivery from "./components/delivery"
+import Survey from "./components/survey"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppWeather/>}/>
           <Route path="/signup" element={<Signup/>}/>
+          <Route path="/survey" element={<Survey/>}/>
           <Route path="/home" element={<Home/>}/>
           <Route path="/findpw" element={<Findpw/>}/>
           <Route path="/login" element={<Login/>}/>
