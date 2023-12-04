@@ -45,9 +45,9 @@ function Findpw(){
     return (
         <div class="findpw">
 
-            <h1>Find password</h1>
+            <h1 class = "findpw-logo">Find password</h1>
 
-            <form action="POST">
+            <form class="findpw-form" action="POST">
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email"  />
                 <select onChange={(e) => setSecurityQuestion(e.target.value)} defaultValue="">
                     <option value="" disabled>Select a Security Question</option>

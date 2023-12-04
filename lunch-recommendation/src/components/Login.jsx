@@ -63,11 +63,11 @@ function Login() {
     // };
 
     return (
-        <div className="login">
+        <div className="login" class="loginbody">
 
             <h1>뭐 먹지</h1>
 
-            <form action="POST">
+            <form class="loginform" action="POST">
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email"  />
                 <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password"  />
                 <p><Link class="Forgotpassword" to="/findpw">Forgot Password?</Link></p>
@@ -78,6 +78,8 @@ function Login() {
             <p class ="noaccount"> Don't have an account?  <Link to="/signup">Signup Page</Link></p>
             <br />
             <Link to="/home">homepage</Link>
+            
+            <Link to="/">first page</Link>
 
         </div>
     )
