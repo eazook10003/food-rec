@@ -42,7 +42,7 @@ const Survey = () => {
   };
 
   const goToNext = () => {
-    if (answers[currentPage].length < 1) {
+    if (answers[currentPage].length < 5) {
       alert("최소 5개의 음식을 선택해야 합니다.");
       return;
     }
