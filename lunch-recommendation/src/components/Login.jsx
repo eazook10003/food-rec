@@ -77,8 +77,10 @@ function Login() {
             <br />
             <p class ="noaccount"> Don't have an account?  <Link to="/signup">Signup Page</Link></p>
             <br />
-            <Link to="/home">homepage</Link>
-            
+            <Link to="/home">homepage/</Link>
+
+            <Link to="/survey"> Survey/</Link>
+   
             <Link to="/">first page</Link>
 
         </div>
