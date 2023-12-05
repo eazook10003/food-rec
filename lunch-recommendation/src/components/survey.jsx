@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 import './survey.css';
 
 const mapAnswersToPreferences = (answers) => {
@@ -25,6 +27,7 @@ const mapAnswersToPreferences = (answers) => {
 
 
 const Survey = () => {
+  const navigate = useNavigate();
   const questions = ["더운날 아침에 어떤 음식들이 더 끌리시나요?", "추운날 아침에 어떤 음식들이 더 끌리시나요?", "좋은날 아침에 어떤 음식들이 더 끌리시나요?", "더운날 점심에 어떤 음식들이 더 끌리시나요?", "추운날 점심에 어떤 음식들이 더 끌리시나요?", "좋은날 점심에 어떤 음식들이 더 끌리시나요?", "더운날 저녁에 어떤 음식들이 더 끌리시나요?", "추운날 저녁에 어떤 음식들이 더 끌리시나요?", "좋은날 저녁에 어떤 음식들이 더 끌리시나요?"];
   const foodOptions = ["황태국", "김치찌개", "딸기잼 롤", "알리오올리오", "떡볶이", "오믈렛", "시저샐러드", "양송이스프"];
   const [currentPage, setCurrentPage] = useState(0);
@@ -64,6 +67,7 @@ const Survey = () => {
   
       if (response.status === 200) {
         alert('설문이 성공적으로 저장되었습니다!');
+        navigate('/home');
         // navigate('/home'); // Uncomment or update this as per your navigation logic
       } else {
         console.error('Server error:', response.status);
