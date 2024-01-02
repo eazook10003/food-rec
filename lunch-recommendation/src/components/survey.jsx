@@ -28,8 +28,8 @@ const mapAnswersToPreferences = (answers) => {
 
 const Survey = () => {
   const navigate = useNavigate();
-  const questions = ["더운날 아침에 어떤 음식들이 더 끌리시나요?", "추운날 아침에 어떤 음식들이 더 끌리시나요?", "좋은날 아침에 어떤 음식들이 더 끌리시나요?", "더운날 점심에 어떤 음식들이 더 끌리시나요?", "추운날 점심에 어떤 음식들이 더 끌리시나요?", "좋은날 점심에 어떤 음식들이 더 끌리시나요?", "더운날 저녁에 어떤 음식들이 더 끌리시나요?", "추운날 저녁에 어떤 음식들이 더 끌리시나요?", "좋은날 저녁에 어떤 음식들이 더 끌리시나요?"];
-  const foodOptions = ["황태국", "김치찌개", "딸기잼 롤", "알리오올리오", "떡볶이", "오믈렛", "시저샐러드", "양송이스프"];
+  const questions = ["땀을 흘리며 잠에서 깨어난 후, 가장 먹고 싶은 음식은 무엇인가요?", "차가운 아침 공기를 느끼며 일어난 후, 가장 먹고 싶은 음식은 무엇인가요?", "상쾌하고 맑은 아침공기가 느껴지는 아침, 가장 먹고 싶은 음식은 무엇인가요? ", "한 낮에 뜨거운 태양이 느껴지는 날, 가장 먹고 싶은 음식은 무엇인가요?", "입에서 김이 나는 추운 낮, 가장 먹고 싶은 음식은 무엇인가요?", "맑은 하늘에 바람이 선선히 부는 낮, 가장 먹고 싶은 음식은 무엇인가요?", "더위가 가시지 않는 밤, 가장 먹고 싶은 음식은 무엇인가요?", "긴 추운 하루를 마치고 가장 먹고 싶은 음식은 무엇인가요?", "달이 보이는 맑은 하늘에 기분이 좋아지는 바람이 부는 밤에 가장 먹고 싶은 음식은 무엇인가요?"];
+  const foodOptions = ["황태국", "김치찌개", "딸기잼 롤", "알리오올리오", "떡볶이", "오믈렛", "시저샐러드", "양송이스프", "부대찌개", "떡볶이", "파전", "된장찌개", "김치볶음밥", "샌드위치", "김치전", "와플", "떡국", "김밥", "콩국수", "잔치국수", "비빔국수", "낙곱새", "곰국", "카레", "치킨"];
   const [currentPage, setCurrentPage] = useState(0);
   const [answers, setAnswers] = useState(Array(9).fill([]));
   const email = JSON.parse(localStorage.getItem('email'));
@@ -67,7 +67,7 @@ const Survey = () => {
   
       if (response.status === 200) {
         alert('설문이 성공적으로 저장되었습니다!');
-        navigate('/home');
+        navigate('/login');
         // navigate('/home'); // Uncomment or update this as per your navigation logic
       } else {
         console.error('Server error:', response.status);

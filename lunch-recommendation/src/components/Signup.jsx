@@ -35,7 +35,6 @@ function Login() {
                 else if(res.data=="notexist"){
                     localStorage.setItem('email', JSON.stringify(email));
                     history("/survey")
-                    //history("/home",{state:{id:email}})
                 }
             })
             .catch(e=>{

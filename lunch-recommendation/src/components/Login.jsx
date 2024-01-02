@@ -19,7 +19,7 @@ function Login() {
             })
             .then(res=>{
                 if(res.data=="exist"){
-                    history("/home")
+                    history("/cook")
                     localStorage.setItem('userID', JSON.stringify(email));
                 }
                 else if(res.data=="wrong-pw"){
@@ -54,11 +54,6 @@ function Login() {
             <br />
             <p class ="noaccount"> Don't have an account?  <Link to="/signup">Signup Page</Link></p>
             <br />
-            <Link to="/home">homepage/</Link>
-
-            <Link to="/survey"> Survey/</Link>
-   
-            <Link to="/">first page</Link>
 
         </div>
     )

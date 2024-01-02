@@ -337,36 +337,5 @@ def collect_preferences():
     else:
         return jsonify({"error": "Update failed"}), 500
 
-    # data = request.json
-    # email = data.get('userId')
-    # preferences = data.get('preferences')
-
-    # try:
-    #     # Find the user by email
-    #     user = collection.find_one({"email": email})
-    #     if not user:
-    #         return jsonify({"error": "User not found"}), 404
-
-    #     user_id = user['_id']
-
-    #     # Update or insert the preferences into the preferences collection
-    #     update_result = preferences_collection.update_one(
-    #         {"userId": user_id},
-    #         {
-    #             "$set": {
-    #                 "preferences": preferences
-    #             }
-    #         },
-    #         upsert=True
-    #     )
-
-    #     if update_result.modified_count or update_result.upserted_id:
-    #         return jsonify({"message": "Preferences collected successfully"}), 200
-    #     else:
-    #         return jsonify({"error": "Preferences collection failed"}), 500
-
-    # except Exception as e:
-    #     return jsonify({"error": str(e)}), 500
-
 if __name__ == "__main__":
     app.run(port=8000)

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
+import './cook.css';
 
 function Cook (){
 
     const [dishName, setDishName] = useState('');
     const [foodInfo, setFoodInfo] = useState(null);
-    const [prediction, setPrediction] = useState(null);
+    const [prediction, setPrediction] = useState('');
     const weatherData = JSON.parse(localStorage.getItem('weatherData')); // 날씨 정보를 가져옴
     const userID = JSON.parse(localStorage.getItem('userID'));           // 유저 아이디 정보를 가져옴
-
     // 백앤드에 날씨, 이메일 보낸 후 추천 메뉴 받아오기
     useEffect(() => {
         const fetchData = async () => {
@@ -67,12 +67,23 @@ function Cook (){
         }
     };
     
+    const renderPredictions = () => {
+        // Convert prediction to a string and then split
+        const predictionString = String(prediction);
+        return predictionString.split(' ').map((pred, index) => (
+            <p key={index}>{pred}</p>
+        ));
+    };
 
     return (
         <div className="cook">
-            <h1>COOK</h1>
+            <h1>Search for Recipe</h1>
 
-            {prediction && <div>추천 메뉴 4가지: {prediction}</div>}
+            {prediction && (
+                <div>
+                    <h2>추천 메뉴 <h5>{renderPredictions()}</h5></h2>
+                </div>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <input 
@@ -86,15 +97,15 @@ function Cook (){
 
             {foodInfo && (
                 <div>
-                    {/* <h2>{foodInfo.name}</h2> */}
                     <p>Ingredients: {foodInfo.ingredients}</p>
                     <ol>
                         {foodInfo.recipe.map((step, index) => (
-                            <li key={index}>{step}</li>
+                            <p key={index} className="recipe-step">{step}</p>
                         ))}
                     </ol>
                 </div>
             )}
+
         </div>
     );
 }
