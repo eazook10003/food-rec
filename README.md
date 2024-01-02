@@ -1,32 +1,48 @@
-REACT 실행하기
+Lunch recommendation algorithm
+-
+This application elevates the predictive accuracy of its recommendation system by synergizing Naive Bayes and K-Nearest Neighbors (KNN) algorithms through sophisticated ensemble learning techniques. To enhance the precision of our predictions, the system initially engages users in a survey composed of nine tailored questions. This preliminary data collection is pivotal for training our algorithms with user-specific preferences.
 
-1. npm install (node module 설치)
+As users interact with the app, particularly on the 'Cook' page, their choices and searches contribute to an ongoing refinement of their profile. Each interaction is meticulously recorded in our MongoDB database, allowing for a progressively personalized and accurate recommendation experience. This dynamic learning process ensures that the system evolves and adapts to each user's unique culinary preferences over time.
 
-2. lunch-recommendation 폴더 내에서 "npm run dev" 실행하기
+Moreover, we place a strong emphasis on individualized data handling. Each user's data is stored independently, reinforcing the personalization of their experience while upholding data integrity and privacy. This user-centric approach to data collection and analysis is fundamental to delivering bespoke recipe suggestions that resonate more closely with each individual's tastes and cooking preferences.
 
-   
+Pre-requisites and Setup Instructions
+-
+1. Install the required packages for the frontend and backend. In the "lunch-recommendation" directory, run the following command to set up the frontend:
+```
+$ npm install
+```
+Then, navigate to the root directory where app.py is located and install the backend dependencies:
+```
+$ pip install flask flask-cors pymongo
+```
+2. To utilize a local MongoDB database, ensure MongoDB is installed on your system.
+In your application's database configuration, ensure that you are connecting to the local MongoDB instance, typically at mongodb://localhost:27017.
+3. Start the application by running the frontend and backend servers. In the "lunch-recommendation" directory, start the frontend server:
+```
+$ npm run dev
+```
+In a separate terminal, navigate to the root directory where app.py is located and start the backend server:
+```
+$ python3 app.py
+```
 
-flask 실행하기
+Main page
+-
+<img width="1428" alt="Screenshot 2024-01-02 at 2 52 13 PM" src="https://github.com/eazook10003/food-rec/assets/82238220/387fa3a2-d23e-4dfd-a102-947a91f477b5">
 
-1. pip install flask flask-cors pymongo
+Log-in Page
+-
+<img width="1421" alt="Screenshot 2024-01-02 at 2 52 43 PM" src="https://github.com/eazook10003/food-rec/assets/82238220/1e33151f-4c43-418e-a81b-d2da7c875c31">
 
-2. MongoDB Compass앱 database 연결하기
+Sign-up Page
+-
+-<img width="1428" alt="Screenshot 2024-01-02 at 2 53 19 PM" src="https://github.com/eazook10003/food-rec/assets/82238220/85829126-3e6b-4a63-8b64-56a2c398bb20">
 
-3. python3 app.py
+Survey page
+-
+<img width="1420" alt="Screenshot 2024-01-02 at 2 53 49 PM" src="https://github.com/eazook10003/food-rec/assets/82238220/f2ab4a8c-249b-4237-9a3b-87ed151f0752">
 
-**************************************************************
-1. git branch - 현재 자신이 어디 branch에 있는지 확인
-   
-2. git checkout 브랜치이름 - 이동하고 싶은 브랜치로 이동
-
-코드 변경은 항상 test1 브랜치에서 진행해주세요!
-**************************************************************
-
-코드 pull 하기
-1. "git pull origin 브랜치-이름"을 통해 해당 브랜치의 코드를 자신의 컴퓨터로 불러온다
-2. 만약 에러가 뜬다면 현재 자신의 코드를 add, commit하지 않아서 그럴 것임 - (git add .) 와  (git commit -am "여기 메세지 입력")
-3. pull 완료를 했을때 conflict가 생길 수 있어 conflict만 해결하면 끝
-
-변경한 코드 branch에 push하기
-1. 코드 변경 후 "git add", "git commit"을 한다
-2. "git push origin 브랜치-이름" 을 통해 변경한 코드를 해당 브랜치로 push
+Cook Page
+-
+<img width="1426" alt="Screenshot 2024-01-02 at 2 56 06 PM" src="https://github.com/eazook10003/food-rec/assets/82238220/13f2e4c6-561e-4706-84ad-7f3de3a68869">
