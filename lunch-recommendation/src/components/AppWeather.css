@@ -1,0 +1,75 @@
+.firstpage-all{
+  align-items: center;
+  margin: auto;
+}
+.firstpage-image{
+  align-items: center;
+  margin: auto;
+  position: relative;
+  top: 50px;
+    z-index: -1;
+}
+.frame {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+  }
+  button {
+    margin: 20px;
+  }
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+/* 2 */
+.btn-2 {
+  background: rgb(240, 189, 153);
+  background: linear-gradient(0deg, rgba(240, 189, 153, 1) 0%, rgb(240, 209, 124)100%);
+  border: none;
+  
+}
+.btn-2:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-2:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+.Loginbutton{
+  align-items: center;
+  margin: auto;
+}
+.Signupbutton{
+  align-items: center;
+  margin: auto;
+}
+.firstpage-logo{
+  text-align: center;
+  margin: auto;
+  position: relative;
+  top: 200px;
+  max-width: 300px;
+}
+.Signupbutton, .Loginbutton{
+  display: inline-block;
+  position: relative;
+  left: 700px;
+  bottom: 650px;
+}

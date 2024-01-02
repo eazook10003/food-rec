@@ -1,0 +1,26 @@
+.findpw{
+    height: 350px;
+    width: 300px;
+    align-items: center;
+    /* margin: auto; */
+    margin-bottom: 50px;
+    background-color: rgb(240, 189, 153);
+}
+.findpw-submit-button{
+    background-color: red;
+}
+.findpw-form{
+    /* margin-top: 15px;
+    gap: 30px; */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+.findpw-logo{
+    background-color: white;
+    width: auto;
+    text-align: center;
+    margin: auto;
+}

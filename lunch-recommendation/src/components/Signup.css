@@ -1,0 +1,43 @@
+
+h1{
+    background-color: white;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+}
+
+.Signup{
+    background-color: rgb(240, 189, 153);
+    align-items: center;
+    margin: auto;
+    width: 280px;
+    height: 550px;
+}
+
+.Signup-form{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Signup-submit-button{
+    align-items: center;
+    margin: auto;
+    width: 230px;
+    height: 40px;
+    background-color: red;
+    position: relative;
+    top: 1px;
+}
+
+p{
+    text-align: center;
+    align-items: center;
+    margin:auto;
+}
+select{
+    position: relative;
+    left: 15px;
+    max-width: 250px;
+}
